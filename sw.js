@@ -1,4 +1,4 @@
-const CACHE = 'spiaggia-v5';
+const CACHE = 'spiaggia-v6';
 const ASSETS = [
   './',
   './index.html',
