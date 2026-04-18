@@ -112,17 +112,21 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 #sel-box{position:absolute;border:1.5px dashed var(--sel);background:rgba(245,158,11,.06);pointer-events:none;display:none;z-index:50}
 
 /* ── EDITOR BAR ── */
-.editor-bar{background:var(--surf);border-top:.5px solid var(--border);padding:.55rem .85rem;flex-shrink:0;display:none}
-.eb-row{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
-.eb-sep{width:.5px;height:20px;background:var(--border2);margin:0 .15rem;flex-shrink:0}
-.eb-label{font-size:.7rem;color:var(--muted);font-weight:500;white-space:nowrap}
-.sel-info{font-size:.7rem;color:var(--sel);font-weight:600;min-width:60px}
-.btn-ed{background:var(--surf2);border:.5px solid var(--border2);border-radius:6px;padding:.28rem .6rem;font-size:.72rem;color:var(--text);cursor:pointer;font-family:var(--font);white-space:nowrap;transition:background .12s}
+.editor-bar{background:var(--surf);border-top:.5px solid var(--border);padding:.5rem .75rem;flex-shrink:0;display:none;flex-direction:column;gap:.4rem}
+.eb-row{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
+.eb-sep{width:.5px;height:18px;background:var(--border2);margin:0 .1rem;flex-shrink:0}
+.eb-label{font-size:.68rem;color:var(--muted);font-weight:500;white-space:nowrap}
+.sel-info{font-size:.68rem;color:var(--sel);font-weight:600;min-width:55px}
+.btn-ed{background:var(--surf2);border:.5px solid var(--border2);border-radius:6px;padding:.28rem .55rem;font-size:.7rem;color:var(--text);cursor:pointer;font-family:var(--font);white-space:nowrap;transition:background .12s}
 .btn-ed:hover{background:var(--border2)}
 .btn-ed.danger{border-color:rgba(239,68,68,.3);color:#f87171}
 .btn-ed.accent{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:var(--accent)}
-.size-inp{width:46px;background:var(--surf2);border:.5px solid var(--border2);border-radius:6px;padding:.28rem .4rem;font-size:.72rem;color:var(--text);font-family:var(--font);text-align:center;outline:none}
+.btn-ed.save{background:var(--accent);border-color:var(--accent2);color:#fff;font-weight:600;padding:.35rem .9rem}
+.btn-ed.save:hover{opacity:.9}
+.size-inp{width:44px;background:var(--surf2);border:.5px solid var(--border2);border-radius:6px;padding:.28rem .35rem;font-size:.7rem;color:var(--text);font-family:var(--font);text-align:center;outline:none}
 .size-inp:focus{border-color:var(--accent)}
+.eb-actions{display:flex;gap:.35rem;align-items:center;padding-top:.35rem;border-top:.5px solid var(--border)}
+
 
 /* ── BOTTOM TABS ── */
 .btabs{display:flex;border-top:.5px solid var(--border);background:var(--surf);flex-shrink:0}
@@ -192,7 +196,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
         <div class="step-row"><span class="snum">5</span>Copia l'URL</div>
       </div>
       <label class="flbl">URL Apps Script</label>
-      <input class="finp" id="cfg-url" type="url" placeholder="https://script.google.com/macros/s/AKfycbzeWDLPUTV8O3NzrzkBywD_kQzUbD7vFFxbFhoBekgxqsSn18uckKt9mZKKOdWtDkn1/exec" oninput="chkUrl()">
+      <input class="finp" id="cfg-url" type="url" placeholder="https://script.google.com/macros/s/…/exec" oninput="chkUrl()">
       <label class="flbl">Password dipendente</label>
       <input class="finp" id="cfg-dip" type="text" value="spiaggia2024">
       <label class="flbl">Password titolare</label>
@@ -259,44 +263,43 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 
     <!-- Editor bar -->
     <div class="editor-bar" id="editor-bar">
+      <!-- Riga 1: selezione info + aggiungi + dimensione + quadrato -->
       <div class="eb-row">
         <span class="sel-info" id="sel-info">0 selezionati</span>
         <div class="eb-sep"></div>
-
-        <span class="eb-label">Aggiungi:</span>
         <button class="btn-ed accent" onclick="addOmb()">+ Ombrellone</button>
-
         <div class="eb-sep"></div>
-        <span class="eb-label">Dimensione:</span>
+        <span class="eb-label">Dim:</span>
         <input class="size-inp" id="inp-w" type="number" value="68" min="44" max="200" placeholder="L">
-        <span class="eb-label" style="color:var(--border2)">×</span>
+        <span class="eb-label" style="opacity:.4">×</span>
         <input class="size-inp" id="inp-h" type="number" value="68" min="44" max="200" placeholder="H">
-        <button class="btn-ed" onclick="applySizeToSelected()" title="Applica dimensione alla selezione">Applica</button>
-        <button class="btn-ed" onclick="makeSquare()" title="Rendi quadrati">Quadrato</button>
-
-        <div class="eb-sep"></div>
-        <span class="eb-label">Allinea:</span>
-        <button class="btn-ed" onclick="alignSel('left')"   title="Allinea a sinistra">⬤ Sin</button>
-        <button class="btn-ed" onclick="alignSel('right')"  title="Allinea a destra">Des ⬤</button>
-        <button class="btn-ed" onclick="alignSel('top')"    title="Allinea in alto">⬤ Su</button>
-        <button class="btn-ed" onclick="alignSel('bottom')" title="Allinea in basso">Giù ⬤</button>
-        <button class="btn-ed" onclick="alignSel('hcenter')" title="Centra orizzontale">↔ Cen</button>
-        <button class="btn-ed" onclick="alignSel('vcenter')" title="Centra verticale">↕ Cen</button>
-
-        <div class="eb-sep"></div>
-        <span class="eb-label">Distribuzione:</span>
-        <button class="btn-ed" onclick="distribute('h')" title="Distribuisci orizzontalmente">↔ Dist</button>
-        <button class="btn-ed" onclick="distribute('v')" title="Distribuisci verticalmente">↕ Dist</button>
-
+        <button class="btn-ed" onclick="applySizeToSelected()">Applica</button>
+        <button class="btn-ed" onclick="makeSquare()">Quadrato</button>
         <div class="eb-sep"></div>
         <span class="eb-label">Snap:</span>
-        <button class="btn-ed" id="snap-btn" onclick="toggleSnap()" title="Attiva/disattiva griglia">Griglia ON</button>
-        <input class="size-inp" id="snap-inp" type="number" value="8" min="4" max="40" style="width:36px" title="Dimensione griglia">
-
+        <button class="btn-ed" id="snap-btn" onclick="toggleSnap()">Griglia ON</button>
+        <input class="size-inp" id="snap-inp" type="number" value="8" min="4" max="40" style="width:36px">
+      </div>
+      <!-- Riga 2: allinea + distribuisci -->
+      <div class="eb-row">
+        <span class="eb-label">Allinea:</span>
+        <button class="btn-ed" onclick="alignSel('left')">◀ Sin</button>
+        <button class="btn-ed" onclick="alignSel('right')">Des ▶</button>
+        <button class="btn-ed" onclick="alignSel('top')">▲ Su</button>
+        <button class="btn-ed" onclick="alignSel('bottom')">Giù ▼</button>
+        <button class="btn-ed" onclick="alignSel('hcenter')">↔ Centro</button>
+        <button class="btn-ed" onclick="alignSel('vcenter')">↕ Centro</button>
         <div class="eb-sep"></div>
-        <button class="btn-ed danger" onclick="deleteSelected()" id="del-sel-btn" style="display:none">🗑 Elimina</button>
-        <button class="btn-ed accent" onclick="saveLayout()">💾 Salva</button>
-        <button class="btn-ed" onclick="toggleEdit()">✓ Fine</button>
+        <span class="eb-label">Distribuisci:</span>
+        <button class="btn-ed" onclick="distribute('h')">↔ Uniform</button>
+        <button class="btn-ed" onclick="distribute('v')">↕ Uniform</button>
+      </div>
+      <!-- Riga 3: azioni principali — sempre visibili -->
+      <div class="eb-actions">
+        <button class="btn-ed danger" onclick="deleteSelected()" id="del-sel-btn" style="display:none">🗑 Elimina selezione</button>
+        <button class="btn-ed save" onclick="saveLayout()">💾 Salva layout</button>
+        <button class="btn-ed" onclick="toggleEdit()">✓ Fine modifica</button>
+        <span style="font-size:.65rem;color:var(--muted);margin-left:.3rem">Shift+click = selezione multipla • Trascina nel vuoto = selezione area</span>
       </div>
     </div>
   </div>
@@ -859,16 +862,15 @@ function toggleEdit() {
 async function saveLayout() {
   const layoutToSave = {};
   Object.entries(layout).forEach(([id, l]) => { layoutToSave[id] = {...l}; });
-  console.log('Invio layout:', JSON.stringify(layoutToSave));
-  console.log('URL:', cfg.url);
-  console.log('Pass:', pass);
+  console.log('saveLayout → invio', Object.keys(layoutToSave).length, 'ombrelloni');
+  toast('⏳ Salvataggio in corso…');
   try {
     const res = await apiPost({ action:'saveLayout', layout:layoutToSave, pass });
-    console.log('Risposta backend:', JSON.stringify(res));
+    console.log('saveLayout → risposta:', JSON.stringify(res));
     if (!res.ok) throw new Error(res.error);
-    toast('✅ Layout salvato');
+    toast('✅ Layout salvato su tutti i dispositivi');
   } catch(e) {
-    console.error('Errore saveLayout:', e);
+    console.error('saveLayout → errore:', e);
     toast('⚠️ Errore: ' + e.message);
   }
 }
