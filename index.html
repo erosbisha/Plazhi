@@ -851,11 +851,17 @@ function toggleEdit() {
   editMode = !editMode;
   const bar = document.getElementById('editor-bar');
   const btn = document.getElementById('edit-toggle-btn');
-  bar.style.display = editMode ? '' : 'none';
-  btn.textContent   = editMode ? '✓ Fine modifica' : '✏️ Modifica';
-  btn.classList.toggle('active-btn', editMode);
+  if (editMode) {
+    bar.style.display = 'flex';
+    bar.style.flexDirection = 'column';
+    btn.style.display = 'none';
+  } else {
+    bar.style.display = 'none';
+    btn.style.display = '';
+    btn.textContent = '✏️ Modifica';
+    clearSelection();
+  }
   document.getElementById('map-surface').classList.toggle('edit-grid', editMode && snapOn);
-  if (!editMode) { clearSelection(); }
   renderAll();
 }
 
