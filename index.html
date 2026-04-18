@@ -859,11 +859,18 @@ function toggleEdit() {
 async function saveLayout() {
   const layoutToSave = {};
   Object.entries(layout).forEach(([id, l]) => { layoutToSave[id] = {...l}; });
+  console.log('Invio layout:', JSON.stringify(layoutToSave));
+  console.log('URL:', cfg.url);
+  console.log('Pass:', pass);
   try {
     const res = await apiPost({ action:'saveLayout', layout:layoutToSave, pass });
+    console.log('Risposta backend:', JSON.stringify(res));
     if (!res.ok) throw new Error(res.error);
-    toast('✅ Layout salvato su tutti i dispositivi');
-  } catch(e) { toast('⚠️ Errore salvataggio: ' + e.message); }
+    toast('✅ Layout salvato');
+  } catch(e) {
+    console.error('Errore saveLayout:', e);
+    toast('⚠️ Errore: ' + e.message);
+  }
 }
 
 // ══════════════════════════════════════════════════════════
