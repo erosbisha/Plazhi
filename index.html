@@ -10,146 +10,168 @@
 <link rel="manifest" href="manifest.json">
 <title>Spiaggia</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg:#0e1117; --surf:#181c25; --surf2:#1f2433;
-  --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.15);
-  --text:#e8eaf0; --muted:#6b7280; --accent:#3b82f6;
-  --free:#10b981; --free-bg:rgba(16,185,129,.13);
-  --am:#f59e0b;   --am-bg:rgba(245,158,11,.13);
-  --pm:#3b82f6;   --pm-bg:rgba(59,130,246,.13);
-  --full:#8b5cf6; --full-bg:rgba(139,92,246,.13);
-  --r:10px; --font:'DM Sans',system-ui,sans-serif;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e1117;--surf:#181c25;--surf2:#1f2433;
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.15);
+  --text:#e8eaf0;--muted:#6b7280;--accent:#3b82f6;--accent2:#2563eb;
+  --sel:#f59e0b;
+  --free:#10b981;--free-bg:rgba(16,185,129,.13);
+  --am:#f59e0b;  --am-bg:rgba(245,158,11,.13);
+  --pm:#3b82f6;  --pm-bg:rgba(59,130,246,.13);
+  --full:#8b5cf6;--full-bg:rgba(139,92,246,.13);
+  --r:10px;--font:'DM Sans',system-ui,sans-serif;
 }
-html,body { height:100%; background:var(--bg); color:var(--text); font-family:var(--font); -webkit-font-smoothing:antialiased; overflow:hidden; }
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow:hidden}
 
 /* ── SCREENS ── */
-.screen { display:none; flex-direction:column; height:100vh; }
-.screen.active { display:flex; }
+.screen{display:none;flex-direction:column;height:100vh}
+.screen.active{display:flex}
 
-/* ── SETUP & LOGIN ── */
-.center-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2rem 1.5rem; overflow-y:auto; }
-.logo { font-size:2.4rem; margin-bottom:1rem; }
-.sc-title { font-size:1.3rem; font-weight:600; margin-bottom:.3rem; }
-.sc-sub   { font-size:.82rem; color:var(--muted); margin-bottom:1.5rem; text-align:center; max-width:300px; line-height:1.5; }
-.card { background:var(--surf); border:.5px solid var(--border2); border-radius:16px; padding:1.4rem; width:100%; max-width:360px; }
-.flbl { display:block; font-size:.73rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.4rem; }
-.finp { width:100%; background:var(--surf2); border:.5px solid var(--border2); border-radius:var(--r); padding:.7rem .9rem; font-size:.9rem; font-family:var(--font); color:var(--text); outline:none; margin-bottom:.85rem; transition:border-color .15s; }
-.finp:focus { border-color:var(--accent); }
-.btn-main { width:100%; background:var(--accent); color:#fff; border:none; border-radius:var(--r); padding:.85rem; font-size:.95rem; font-family:var(--font); font-weight:600; cursor:pointer; transition:opacity .15s; }
-.btn-main:disabled { opacity:.45; cursor:not-allowed; }
-.err { font-size:.8rem; color:#f87171; margin-top:.6rem; text-align:center; min-height:1em; }
-.step-row { display:flex; gap:8px; align-items:flex-start; margin-bottom:.55rem; font-size:.8rem; color:var(--muted); line-height:1.5; }
-.snum { width:20px; height:20px; border-radius:50%; background:var(--surf2); border:.5px solid var(--border2); font-size:.7rem; font-weight:600; color:var(--muted); display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
-.link-btn { background:none; border:none; color:var(--muted); font-size:.75rem; cursor:pointer; font-family:var(--font); margin-top:.9rem; text-align:center; width:100%; }
+/* ── FORMS ── */
+.center-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;overflow-y:auto}
+.logo{font-size:2.4rem;margin-bottom:1rem}
+.sc-title{font-size:1.3rem;font-weight:600;margin-bottom:.3rem}
+.sc-sub{font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;text-align:center;max-width:300px;line-height:1.5}
+.card{background:var(--surf);border:.5px solid var(--border2);border-radius:16px;padding:1.4rem;width:100%;max-width:360px}
+.flbl{display:block;font-size:.73rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem}
+.finp{width:100%;background:var(--surf2);border:.5px solid var(--border2);border-radius:var(--r);padding:.7rem .9rem;font-size:.9rem;font-family:var(--font);color:var(--text);outline:none;margin-bottom:.85rem;transition:border-color .15s}
+.finp:focus{border-color:var(--accent)}
+.btn-main{width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--r);padding:.85rem;font-size:.95rem;font-family:var(--font);font-weight:600;cursor:pointer}
+.btn-main:disabled{opacity:.45;cursor:not-allowed}
+.err{font-size:.8rem;color:#f87171;margin-top:.6rem;text-align:center;min-height:1em}
+.link-btn{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;font-family:var(--font);margin-top:.9rem;text-align:center;width:100%}
+.step-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:.55rem;font-size:.8rem;color:var(--muted);line-height:1.5}
+.snum{width:20px;height:20px;border-radius:50%;background:var(--surf2);border:.5px solid var(--border2);font-size:.7rem;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 
 /* ── TOPBAR ── */
-.topbar { background:var(--surf); border-bottom:.5px solid var(--border); padding:.7rem 1rem; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
-.topbar-l { display:flex; align-items:center; gap:.5rem; }
-.tb-title { font-size:.95rem; font-weight:600; }
-.role-pill { font-size:.68rem; padding:.18rem .55rem; border-radius:20px; font-weight:600; }
-.rp-dip { background:rgba(245,158,11,.15); color:#f59e0b; }
-.rp-tit { background:rgba(16,185,129,.15); color:#10b981; }
-.topbar-r { display:flex; gap:.5rem; align-items:center; }
-.btn-sm { background:var(--surf2); border:.5px solid var(--border2); border-radius:8px; padding:.33rem .6rem; font-size:.73rem; color:var(--muted); cursor:pointer; font-family:var(--font); transition:background .15s; white-space:nowrap; }
-.btn-sm:hover { background:var(--border2); color:var(--text); }
-.btn-sm.danger { border-color:rgba(239,68,68,.3); color:#f87171; }
+.topbar{background:var(--surf);border-bottom:.5px solid var(--border);padding:.65rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:.5rem}
+.topbar-l{display:flex;align-items:center;gap:.45rem;min-width:0}
+.tb-title{font-size:.95rem;font-weight:600;white-space:nowrap}
+.role-pill{font-size:.68rem;padding:.18rem .55rem;border-radius:20px;font-weight:600;flex-shrink:0}
+.rp-dip{background:rgba(245,158,11,.15);color:#f59e0b}
+.rp-tit{background:rgba(16,185,129,.15);color:#10b981}
+.topbar-r{display:flex;gap:.4rem;align-items:center;flex-shrink:0}
+.btn-sm{background:var(--surf2);border:.5px solid var(--border2);border-radius:7px;padding:.3rem .55rem;font-size:.72rem;color:var(--muted);cursor:pointer;font-family:var(--font);white-space:nowrap;transition:background .12s}
+.btn-sm:hover{background:var(--border2);color:var(--text)}
+.btn-sm.active-btn{background:var(--accent);border-color:var(--accent2);color:#fff}
 
 /* ── STATS ── */
-.stats-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:.65rem 1rem; flex-shrink:0; }
-.stat { background:var(--surf); border:.5px solid var(--border); border-radius:var(--r); padding:.5rem .3rem; text-align:center; }
-.sv { font-size:1.3rem; font-weight:700; line-height:1; margin-bottom:.12rem; }
-.sl { font-size:.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
-.sf .sv{color:var(--free)} .sa .sv{color:var(--am)} .sp .sv{color:var(--pm)} .sx .sv{color:var(--full)}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:.55rem .85rem;flex-shrink:0}
+.stat{background:var(--surf);border:.5px solid var(--border);border-radius:var(--r);padding:.45rem .3rem;text-align:center}
+.sv{font-size:1.25rem;font-weight:700;line-height:1;margin-bottom:.1rem}
+.sl{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.sf .sv{color:var(--free)}.sa .sv{color:var(--am)}.sp .sv{color:var(--pm)}.sx .sv{color:var(--full)}
 
-/* ── MAPPA CANVAS ── */
-.map-container { flex:1; overflow:hidden; position:relative; }
-#map-canvas { width:100%; height:100%; position:relative; overflow:auto; -webkit-overflow-scrolling:touch; }
-#map-surface { position:relative; background: repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px), repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px); min-width:800px; min-height:600px; }
+/* ── MAPPA ── */
+.map-outer{flex:1;overflow:hidden;position:relative;display:flex;flex-direction:column}
+#map-canvas{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative}
+#map-surface{
+  position:relative;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  min-width:900px;min-height:650px;
+}
+
+/* griglia snap visiva in edit */
+#map-surface.edit-grid{
+  background-image:
+    linear-gradient(rgba(59,130,246,.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,130,246,.15) 1px,transparent 1px);
+  background-size:40px 40px;
+}
 
 /* ── OMBRELLONE ── */
-.omb {
-  position:absolute; border-radius:10px; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; cursor:pointer;
-  border:1.5px solid transparent; user-select:none;
-  transition:box-shadow .15s; touch-action:none;
+.omb{
+  position:absolute;border-radius:10px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  border:1.5px solid transparent;user-select:none;touch-action:none;
+  transition:box-shadow .12s,border-color .12s;
 }
-.omb:active { opacity:.85; }
-.omb.dragging { box-shadow:0 8px 24px rgba(0,0,0,.5); z-index:100; opacity:.9; cursor:grabbing; }
-.omb.edit-mode { cursor:move; }
-.omb.edit-mode::after { content:'⠿'; position:absolute; top:2px; right:4px; font-size:.55rem; opacity:.5; }
-.on  { font-size:.85rem; font-weight:700; line-height:1; pointer-events:none; }
-.ot  { font-size:.48rem; font-weight:600; text-transform:uppercase; letter-spacing:.03em; margin-top:2px; opacity:.85; pointer-events:none; }
-.ots { font-size:.42rem; opacity:.5; margin-top:1px; pointer-events:none; }
+.omb .on{font-size:.85rem;font-weight:700;line-height:1;pointer-events:none}
+.omb .ot{font-size:.48rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;margin-top:2px;opacity:.85;pointer-events:none}
+.omb .ots{font-size:.42rem;opacity:.5;margin-top:1px;pointer-events:none}
+
+.omb.selected{box-shadow:0 0 0 2px var(--sel)!important;border-color:var(--sel)!important}
+.omb.dragging{box-shadow:0 10px 28px rgba(0,0,0,.55);z-index:100;opacity:.88}
+
+.s-free{background:var(--free-bg);border-color:rgba(16,185,129,.28);color:var(--free)}
+.s-am  {background:var(--am-bg);  border-color:rgba(245,158,11,.32); color:var(--am)}
+.s-pm  {background:var(--pm-bg);  border-color:rgba(59,130,246,.32); color:var(--pm)}
+.s-full{background:var(--full-bg);border-color:rgba(139,92,246,.32); color:var(--full)}
 
 /* resize handle */
-.rhandle { position:absolute; bottom:2px; right:2px; width:10px; height:10px; cursor:se-resize; opacity:0; transition:opacity .15s; }
-.omb.edit-mode .rhandle { opacity:.6; }
-.rhandle::before { content:''; position:absolute; right:1px; bottom:1px; width:5px; height:5px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; border-radius:0 0 2px 0; }
+.rh{position:absolute;bottom:0;right:0;width:18px;height:18px;cursor:se-resize;display:none;align-items:flex-end;justify-content:flex-end;padding:3px}
+.rh svg{width:8px;height:8px;opacity:.6}
+.edit-mode .rh{display:flex}
+.edit-mode{cursor:move}
 
-.s-free { background:var(--free-bg); border-color:rgba(16,185,129,.28); color:var(--free); }
-.s-am   { background:var(--am-bg);   border-color:rgba(245,158,11,.32);  color:var(--am);   }
-.s-pm   { background:var(--pm-bg);   border-color:rgba(59,130,246,.32);  color:var(--pm);   }
-.s-full { background:var(--full-bg); border-color:rgba(139,92,246,.32);  color:var(--full); }
+/* selection box */
+#sel-box{position:absolute;border:1.5px dashed var(--sel);background:rgba(245,158,11,.06);pointer-events:none;display:none;z-index:50}
 
-/* ── BARRA EDITOR ── */
-.editor-bar { background:var(--surf); border-top:.5px solid var(--border); padding:.6rem 1rem; display:flex; gap:.5rem; align-items:center; flex-shrink:0; flex-wrap:wrap; }
-.eb-label { font-size:.72rem; color:var(--muted); font-weight:500; }
+/* ── EDITOR BAR ── */
+.editor-bar{background:var(--surf);border-top:.5px solid var(--border);padding:.55rem .85rem;flex-shrink:0;display:none}
+.eb-row{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+.eb-sep{width:.5px;height:20px;background:var(--border2);margin:0 .15rem;flex-shrink:0}
+.eb-label{font-size:.7rem;color:var(--muted);font-weight:500;white-space:nowrap}
+.sel-info{font-size:.7rem;color:var(--sel);font-weight:600;min-width:60px}
+.btn-ed{background:var(--surf2);border:.5px solid var(--border2);border-radius:6px;padding:.28rem .6rem;font-size:.72rem;color:var(--text);cursor:pointer;font-family:var(--font);white-space:nowrap;transition:background .12s}
+.btn-ed:hover{background:var(--border2)}
+.btn-ed.danger{border-color:rgba(239,68,68,.3);color:#f87171}
+.btn-ed.accent{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:var(--accent)}
+.size-inp{width:46px;background:var(--surf2);border:.5px solid var(--border2);border-radius:6px;padding:.28rem .4rem;font-size:.72rem;color:var(--text);font-family:var(--font);text-align:center;outline:none}
+.size-inp:focus{border-color:var(--accent)}
 
 /* ── BOTTOM TABS ── */
-.btabs { display:flex; border-top:.5px solid var(--border); background:var(--surf); flex-shrink:0; }
-.btab { flex:1; padding:.6rem; text-align:center; font-size:.7rem; font-weight:500; color:var(--muted); cursor:pointer; border:none; background:none; font-family:var(--font); border-top:2px solid transparent; transition:color .12s; }
-.btab.active { color:var(--accent); border-top-color:var(--accent); }
+.btabs{display:flex;border-top:.5px solid var(--border);background:var(--surf);flex-shrink:0}
+.btab{flex:1;padding:.58rem;text-align:center;font-size:.7rem;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:none;font-family:var(--font);border-top:2px solid transparent;transition:color .12s}
+.btab.active{color:var(--accent);border-top-color:var(--accent)}
 
-/* ── LOG PANEL ── */
-#log-panel { display:none; flex:1; overflow-y:auto; padding:.75rem 1rem 1rem; }
-.log-hd { display:flex; justify-content:space-between; align-items:center; margin-bottom:.7rem; }
-.log-title { font-size:.88rem; font-weight:600; }
-.btn-reset { background:rgba(239,68,68,.1); border:.5px solid rgba(239,68,68,.3); border-radius:8px; padding:.33rem .7rem; font-size:.73rem; color:#f87171; cursor:pointer; font-family:var(--font); }
-.log-row { display:flex; gap:.6rem; align-items:center; padding:.45rem 0; border-bottom:.5px solid var(--border); font-size:.78rem; }
-.log-row:last-child { border-bottom:none; }
-.lts { color:var(--muted); font-size:.7rem; flex-shrink:0; }
-.lid { font-weight:700; min-width:22px; }
-.lst { padding:.1rem .4rem; border-radius:5px; font-size:.68rem; font-weight:600; }
-.ls-free{background:var(--free-bg);color:var(--free)} .ls-am{background:var(--am-bg);color:var(--am)}
-.ls-pm{background:var(--pm-bg);color:var(--pm)} .ls-full{background:var(--full-bg);color:var(--full)}
+/* ── LOG ── */
+#log-panel{display:none;flex:1;overflow-y:auto;padding:.75rem .85rem 1rem}
+.log-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem}
+.log-title{font-size:.88rem;font-weight:600}
+.btn-reset{background:rgba(239,68,68,.1);border:.5px solid rgba(239,68,68,.3);border-radius:7px;padding:.3rem .65rem;font-size:.72rem;color:#f87171;cursor:pointer;font-family:var(--font)}
+.log-row{display:flex;gap:.55rem;align-items:center;padding:.42rem 0;border-bottom:.5px solid var(--border);font-size:.77rem}
+.log-row:last-child{border-bottom:none}
+.lts{color:var(--muted);font-size:.7rem;flex-shrink:0}
+.lid{font-weight:700;min-width:22px}
+.lst{padding:.1rem .4rem;border-radius:5px;font-size:.67rem;font-weight:600}
+.ls-free{background:var(--free-bg);color:var(--free)}.ls-am{background:var(--am-bg);color:var(--am)}
+.ls-pm{background:var(--pm-bg);color:var(--pm)}.ls-full{background:var(--full-bg);color:var(--full)}
 
 /* ── MODAL ── */
-.modal-bd { display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:200; align-items:flex-end; justify-content:center; }
-.modal-bd.open { display:flex; }
-.modal { background:var(--surf); border:.5px solid var(--border2); border-radius:20px 20px 0 0; padding:1.1rem 1rem 2.5rem; width:100%; max-width:480px; animation:slideUp .18s ease; }
-@keyframes slideUp { from{transform:translateY(36px);opacity:0} to{transform:translateY(0);opacity:1} }
-.mhandle { width:34px; height:4px; background:var(--border2); border-radius:2px; margin:0 auto .8rem; }
-.mtitle  { font-size:.95rem; font-weight:600; text-align:center; margin-bottom:.9rem; }
-.mopts   { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
-.opt { padding:.85rem .4rem; border-radius:var(--r); border:1.5px solid transparent; cursor:pointer; font-family:var(--font); font-size:.82rem; font-weight:600; text-align:center; display:flex; flex-direction:column; align-items:center; gap:.25rem; transition:transform .1s; }
-.opt:active { transform:scale(.95); }
-.opt span { font-size:1.2rem; }
+.modal-bd{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:flex-end;justify-content:center}
+.modal-bd.open{display:flex}
+.modal{background:var(--surf);border:.5px solid var(--border2);border-radius:20px 20px 0 0;padding:1.1rem 1rem 2.5rem;width:100%;max-width:480px;animation:slideUp .18s ease}
+@keyframes slideUp{from{transform:translateY(36px);opacity:0}to{transform:translateY(0);opacity:1}}
+.mhandle{width:34px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto .8rem}
+.mtitle{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.9rem}
+.mopts{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.opt{padding:.85rem .4rem;border-radius:var(--r);border:1.5px solid transparent;cursor:pointer;font-family:var(--font);font-size:.82rem;font-weight:600;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.opt span{font-size:1.2rem}
 .o-free{background:var(--free-bg);border-color:rgba(16,185,129,.35);color:var(--free)}
 .o-am  {background:var(--am-bg);  border-color:rgba(245,158,11,.38); color:var(--am)}
 .o-pm  {background:var(--pm-bg);  border-color:rgba(59,130,246,.38); color:var(--pm)}
 .o-full{background:var(--full-bg);border-color:rgba(139,92,246,.38); color:var(--full)}
-.mcancel { width:100%; margin-top:8px; padding:.7rem; background:none; border:.5px solid var(--border2); border-radius:var(--r); color:var(--muted); font-family:var(--font); font-size:.88rem; cursor:pointer; }
-.mdel { width:100%; margin-top:6px; padding:.7rem; background:rgba(239,68,68,.08); border:.5px solid rgba(239,68,68,.25); border-radius:var(--r); color:#f87171; font-family:var(--font); font-size:.82rem; cursor:pointer; }
+.mcancel{width:100%;margin-top:8px;padding:.7rem;background:none;border:.5px solid var(--border2);border-radius:var(--r);color:var(--muted);font-family:var(--font);font-size:.88rem;cursor:pointer}
+.mdel{width:100%;margin-top:6px;padding:.65rem;background:rgba(239,68,68,.08);border:.5px solid rgba(239,68,68,.25);border-radius:var(--r);color:#f87171;font-family:var(--font);font-size:.82rem;cursor:pointer}
 
-/* ── SYNC DOT ── */
-.sdot { width:7px; height:7px; border-radius:50%; background:var(--free); display:inline-block; }
-.sdot.err { background:#f87171; }
-.sdot.spin-anim { background:var(--am); animation:pulse 1s ease-in-out infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
-
-/* ── TOAST ── */
-#toast { position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(14px); background:var(--surf2); border:.5px solid var(--border2); border-radius:20px; padding:.45rem 1.1rem; font-size:.8rem; opacity:0; transition:opacity .2s,transform .2s; pointer-events:none; white-space:nowrap; z-index:300; }
-#toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-
-.loading { display:flex; align-items:center; justify-content:center; padding:2.5rem; color:var(--muted); font-size:.88rem; gap:.5rem; }
-@keyframes spin { to{transform:rotate(360deg)} }
-.spin-el { width:15px; height:15px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; }
-
-/* ── LEGEND ── */
-.legend { display:flex; gap:.6rem; flex-wrap:wrap; padding:0 1rem .45rem; flex-shrink:0; }
-.leg { display:flex; align-items:center; gap:.3rem; font-size:.7rem; color:var(--muted); }
-.ld  { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+/* ── MISC ── */
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--free);display:inline-block}
+.sdot.err{background:#f87171}
+.sdot.pulse{background:var(--am);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+#toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--surf2);border:.5px solid var(--border2);border-radius:20px;padding:.42rem 1rem;font-size:.8rem;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap;z-index:300}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.loading{display:flex;align-items:center;justify-content:center;padding:2rem;color:var(--muted);font-size:.88rem;gap:.5rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin-el{width:14px;height:14px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+.legend{display:flex;gap:.55rem;flex-wrap:wrap;padding:0 .85rem .4rem;flex-shrink:0}
+.leg{display:flex;align-items:center;gap:.3rem;font-size:.7rem;color:var(--muted)}
+.ld{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -160,14 +182,14 @@ html,body { height:100%; background:var(--bg); color:var(--text); font-family:va
   <div class="center-wrap">
     <div class="logo">⛱️</div>
     <div class="sc-title">Configura l'app</div>
-    <div class="sc-sub">Solo la prima volta — poi vai direttamente al login</div>
+    <div class="sc-sub">Solo la prima volta</div>
     <div class="card">
       <div style="margin-bottom:1rem">
-        <div class="step-row"><span class="snum">1</span>Vai su <strong style="color:var(--text)">sheets.google.com</strong> → nuovo foglio</div>
-        <div class="step-row"><span class="snum">2</span>Estensioni → Apps Script → incolla il file <strong style="color:var(--text)">.gs</strong></div>
-        <div class="step-row"><span class="snum">3</span>Esegui <strong style="color:var(--text)">initSheet()</strong> (▶)</div>
-        <div class="step-row"><span class="snum">4</span>Distribuisci → App Web → <strong style="color:var(--text)">Chiunque (anche anonimi)</strong></div>
-        <div class="step-row"><span class="snum">5</span>Copia l'URL e incollalo qui sotto</div>
+        <div class="step-row"><span class="snum">1</span>Sheets → Estensioni → Apps Script</div>
+        <div class="step-row"><span class="snum">2</span>Incolla <strong style="color:var(--text)">backend_v3.gs</strong> → salva</div>
+        <div class="step-row"><span class="snum">3</span>Esegui <strong style="color:var(--text)">initSheet()</strong></div>
+        <div class="step-row"><span class="snum">4</span>Distribuisci → App Web → <strong style="color:var(--text)">Chiunque (anche anonimi)</strong> → <strong style="color:var(--text)">Nuova versione</strong></div>
+        <div class="step-row"><span class="snum">5</span>Copia l'URL</div>
       </div>
       <label class="flbl">URL Apps Script</label>
       <input class="finp" id="cfg-url" type="url" placeholder="https://script.google.com/macros/s/…/exec" oninput="chkUrl()">
@@ -186,7 +208,7 @@ html,body { height:100%; background:var(--bg); color:var(--text); font-family:va
   <div class="center-wrap">
     <div class="logo">⛱️</div>
     <div class="sc-title">Mappa Spiaggia</div>
-    <div class="sc-sub">Inserisci la password per accedere</div>
+    <div class="sc-sub">Inserisci la password</div>
     <div class="card">
       <label class="flbl">Password</label>
       <input class="finp" id="pass-inp" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
@@ -200,7 +222,6 @@ html,body { height:100%; background:var(--bg); color:var(--text); font-family:va
 <!-- ══ APP ══ -->
 <div class="screen" id="app-screen">
 
-  <!-- Topbar -->
   <div class="topbar">
     <div class="topbar-l">
       <span style="font-size:1.1rem">⛱️</span>
@@ -208,13 +229,13 @@ html,body { height:100%; background:var(--bg); color:var(--text); font-family:va
       <span class="role-pill" id="role-pill"></span>
     </div>
     <div class="topbar-r">
-      <span id="sdot-wrap"><span class="sdot spin-anim"></span></span>
+      <span id="sdot-wrap"><span class="sdot pulse"></span></span>
       <button class="btn-sm" onclick="loadAll(true)">↻</button>
+      <button class="btn-sm" id="edit-toggle-btn" onclick="toggleEdit()" style="display:none">✏️ Modifica</button>
       <button class="btn-sm" onclick="doLogout()">Esci</button>
     </div>
   </div>
 
-  <!-- Stats -->
   <div class="stats-bar">
     <div class="stat sf"><div class="sv" id="cnt-free">–</div><div class="sl">Liberi</div></div>
     <div class="stat sa"><div class="sv" id="cnt-am">–</div><div class="sl">Mattina</div></div>
@@ -222,7 +243,6 @@ html,body { height:100%; background:var(--bg); color:var(--text); font-family:va
     <div class="stat sx"><div class="sv" id="cnt-full">–</div><div class="sl">Giornata</div></div>
   </div>
 
-  <!-- Legenda -->
   <div class="legend">
     <div class="leg"><div class="ld" style="background:var(--free)"></div>Libero</div>
     <div class="leg"><div class="ld" style="background:var(--am)"></div>Mattina</div>
@@ -230,9 +250,55 @@ html,body { height:100%; background:var(--bg); color:var(--text); font-family:va
     <div class="leg"><div class="ld" style="background:var(--full)"></div>Giornata</div>
   </div>
 
-  <!-- Mappa / Log -->
-  <div class="map-container" id="map-container">
-    <div id="map-canvas"><div id="map-surface"></div></div>
+  <div class="map-outer" id="map-outer">
+    <div id="map-canvas">
+      <div id="map-surface">
+        <div id="sel-box"></div>
+      </div>
+    </div>
+
+    <!-- Editor bar -->
+    <div class="editor-bar" id="editor-bar">
+      <div class="eb-row">
+        <span class="sel-info" id="sel-info">0 selezionati</span>
+        <div class="eb-sep"></div>
+
+        <span class="eb-label">Aggiungi:</span>
+        <button class="btn-ed accent" onclick="addOmb()">+ Ombrellone</button>
+
+        <div class="eb-sep"></div>
+        <span class="eb-label">Dimensione:</span>
+        <input class="size-inp" id="inp-w" type="number" value="68" min="44" max="200" placeholder="L">
+        <span class="eb-label" style="color:var(--border2)">×</span>
+        <input class="size-inp" id="inp-h" type="number" value="68" min="44" max="200" placeholder="H">
+        <button class="btn-ed" onclick="applySizeToSelected()" title="Applica dimensione alla selezione">Applica</button>
+        <button class="btn-ed" onclick="makeSquare()" title="Rendi quadrati">Quadrato</button>
+
+        <div class="eb-sep"></div>
+        <span class="eb-label">Allinea:</span>
+        <button class="btn-ed" onclick="alignSel('left')"   title="Allinea a sinistra">⬤ Sin</button>
+        <button class="btn-ed" onclick="alignSel('right')"  title="Allinea a destra">Des ⬤</button>
+        <button class="btn-ed" onclick="alignSel('top')"    title="Allinea in alto">⬤ Su</button>
+        <button class="btn-ed" onclick="alignSel('bottom')" title="Allinea in basso">Giù ⬤</button>
+        <button class="btn-ed" onclick="alignSel('hcenter')" title="Centra orizzontale">↔ Cen</button>
+        <button class="btn-ed" onclick="alignSel('vcenter')" title="Centra verticale">↕ Cen</button>
+
+        <div class="eb-sep"></div>
+        <span class="eb-label">Distribuzione:</span>
+        <button class="btn-ed" onclick="distribute('h')" title="Distribuisci orizzontalmente">↔ Dist</button>
+        <button class="btn-ed" onclick="distribute('v')" title="Distribuisci verticalmente">↕ Dist</button>
+
+        <div class="eb-sep"></div>
+        <span class="eb-label">Snap:</span>
+        <button class="btn-ed" id="snap-btn" onclick="toggleSnap()" title="Attiva/disattiva griglia">Griglia ON</button>
+        <input class="size-inp" id="snap-inp" type="number" value="8" min="4" max="40" style="width:36px" title="Dimensione griglia">
+
+        <div class="eb-sep"></div>
+        <button class="btn-ed danger" onclick="deleteSelected()" id="del-sel-btn" style="display:none">🗑 Elimina</button>
+        <button class="btn-ed accent" onclick="saveLayout()">💾 Salva</button>
+        <button class="btn-ed" onclick="toggleEdit()">✓ Fine</button>
+      </div>
+    </div>
   </div>
 
   <div id="log-panel">
@@ -243,22 +309,10 @@ html,body { height:100%; background:var(--bg); color:var(--text); font-family:va
     <div id="log-list"><div class="loading"><div class="spin-el"></div></div></div>
   </div>
 
-  <!-- Barra editor (solo titolare in modalità edit) -->
-  <div class="editor-bar" id="editor-bar" style="display:none">
-    <span class="eb-label">Modifica mappa:</span>
-    <button class="btn-sm" onclick="addOmb()">+ Aggiungi</button>
-    <button class="btn-sm" onclick="saveLayout()">💾 Salva posizioni</button>
-    <button class="btn-sm" onclick="toggleEdit(false)">✓ Fine</button>
-    <span style="font-size:.7rem;color:var(--muted);margin-left:4px">Trascina • Angolo per ridimensionare</span>
-  </div>
-
-  <!-- Bottom tabs (titolare) -->
   <div class="btabs" id="btabs" style="display:none">
     <button class="btab active" id="tab-map" onclick="showTab('map')">🗺 Mappa</button>
     <button class="btab" id="tab-log" onclick="showTab('log')">📋 Registro</button>
-    <button class="btab" id="tab-edit" onclick="toggleEdit(true)">✏️ Modifica</button>
   </div>
-
 </div>
 
 <!-- Modal stato -->
@@ -273,57 +327,56 @@ html,body { height:100%; background:var(--bg); color:var(--text); font-family:va
       <button class="opt o-full" onclick="pick('full')"><span>☀️</span>Giornata</button>
     </div>
     <button class="mcancel" onclick="closeMbd()">Annulla</button>
-    <button class="mdel" id="del-btn" onclick="deleteOmb()" style="display:none">🗑 Elimina ombrellone</button>
+    <button class="mdel" id="del-btn" onclick="deleteOne()" style="display:none">🗑 Elimina ombrellone</button>
   </div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-// ════════════════════════════════════════════════════════════
-//  CONFIGURAZIONE
-// ════════════════════════════════════════════════════════════
-const LBL = { free:'Libero', am:'Mattina', pm:'Pomerig.', full:'Giornata' };
+// ══════════════════════════════════════════════════════════
+//  CONFIG & STATE
+// ══════════════════════════════════════════════════════════
+const LBL = {free:'Libero',am:'Mattina',pm:'Pomerig.',full:'Giornata'};
 const REFRESH_MS = 25000;
-const DEFAULT_W  = 68;
-const DEFAULT_H  = 68;
-const GRID       = 8; // snap to grid px
+const DEF_W = 68, DEF_H = 68;
 
-// ════════════════════════════════════════════════════════════
-//  STATO
-// ════════════════════════════════════════════════════════════
-let cfg      = null;
-let pass     = '';
-let ruolo    = '';
-let remoteData = {};    // { id: {stato,ts,op} }
-let layout   = {};      // { id: {x,y,w,h,label} }
-let selId    = null;
-let editMode = false;
-let timer    = null;
-let nextId   = 1;
+let cfg        = null;
+let pass       = '';
+let ruolo      = '';
+let remote     = {};   // id → {stato,ts,op}
+let layout     = {};   // id → {x,y,w,h,label}
+let selection  = new Set();
+let editMode   = false;
+let snapOn     = true;
+let nextId     = 1;
+let selId      = null;
+let timer      = null;
 
-// ════════════════════════════════════════════════════════════
-//  INIT
-// ════════════════════════════════════════════════════════════
+// drag state
+let dragState  = null;
+// selection box
+let boxState   = null;
+
+// ══════════════════════════════════════════════════════════
+//  BOOT
+// ══════════════════════════════════════════════════════════
 window.onload = () => {
   cfg = JSON.parse(localStorage.getItem('spiaggia_cfg') || 'null');
-  if (cfg && cfg.url) showScreen('login-screen');
-  else showScreen('setup-screen');
+  showScreen(cfg?.url ? 'login-screen' : 'setup-screen');
 };
-
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 //  SETUP
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 function chkUrl() {
-  const v = document.getElementById('cfg-url').value.trim();
-  document.getElementById('setup-btn').disabled = !v.includes('script.google.com');
+  document.getElementById('setup-btn').disabled =
+    !document.getElementById('cfg-url').value.includes('script.google.com');
 }
-
 async function doSetup() {
   const url = document.getElementById('cfg-url').value.trim();
   const pd  = document.getElementById('cfg-dip').value.trim() || 'spiaggia2024';
@@ -334,30 +387,26 @@ async function doSetup() {
   try {
     const res = await apiGet(url, 'getAll', pd);
     if (!res.ok) throw new Error(res.error || 'Risposta non valida');
-    cfg = { url, pd, pt };
+    cfg = {url, pd, pt};
     localStorage.setItem('spiaggia_cfg', JSON.stringify(cfg));
     toast('✅ Configurazione salvata');
     showScreen('login-screen');
-  } catch(e) {
-    err.textContent = 'Errore: ' + e.message;
-  } finally {
-    btn.disabled = false; btn.textContent = 'Testa e salva';
-  }
+  } catch(e) { err.textContent = 'Errore: ' + e.message; }
+  finally { btn.disabled = false; btn.textContent = 'Testa e salva'; }
 }
-
 function goSetup() {
   if (cfg) {
     document.getElementById('cfg-url').value = cfg.url || '';
-    document.getElementById('cfg-dip').value = cfg.pd  || 'spiaggia2024';
-    document.getElementById('cfg-tit').value = cfg.pt  || 'titolare2024';
+    document.getElementById('cfg-dip').value = cfg.pd  || '';
+    document.getElementById('cfg-tit').value = cfg.pt  || '';
     chkUrl();
   }
   showScreen('setup-screen');
 }
 
-// ════════════════════════════════════════════════════════════
-//  LOGIN / LOGOUT
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
+//  LOGIN
+// ══════════════════════════════════════════════════════════
 async function doLogin() {
   const p   = document.getElementById('pass-inp').value.trim();
   const btn = document.getElementById('login-btn');
@@ -365,408 +414,590 @@ async function doLogin() {
   if (!p) return;
   btn.disabled = true; btn.textContent = 'Accesso…'; err.textContent = '';
   try {
-    const res = await apiGet(cfg.url, 'getAll', p);
-    if (!res.ok) throw new Error(res.error || 'Errore');
+    const [resAll, resLayout] = await Promise.all([
+      apiGet(cfg.url, 'getAll',    p),
+      apiGet(cfg.url, 'getLayout', p)
+    ]);
+    if (!resAll.ok) throw new Error(resAll.error || 'Errore');
     pass  = p;
     ruolo = (p === cfg.pt) ? 'titolare' : 'dipendente';
-    processRemote(res.data);
-    loadLocalLayout();
+    processRemote(resAll.data);
+    processLayout(resLayout.layout || {}, resAll.data);
     initApp();
   } catch(e) {
     err.textContent = e.message === 'Password errata' ? 'Password errata' : 'Connessione fallita';
-  } finally {
-    btn.disabled = false; btn.textContent = 'Entra';
-  }
+  } finally { btn.disabled = false; btn.textContent = 'Entra'; }
 }
-
 function doLogout() {
-  clearInterval(timer); pass = ''; ruolo = ''; editMode = false;
+  clearInterval(timer); pass = ''; ruolo = ''; editMode = false; selection.clear();
   document.getElementById('pass-inp').value = '';
   showScreen('login-screen');
 }
 
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
+//  LAYOUT
+// ══════════════════════════════════════════════════════════
+function processLayout(raw, remoteArr) {
+  if (Object.keys(raw).length > 0) {
+    layout = {};
+    Object.entries(raw).forEach(([id, l]) => {
+      layout[Number(id)] = {x:+l.x||0, y:+l.y||0, w:+l.w||DEF_W, h:+l.h||DEF_H, label:l.label||id};
+    });
+  } else {
+    // default grid
+    layout = {};
+    remoteArr.forEach((d, i) => {
+      const col = i % 5, row = Math.floor(i / 5);
+      layout[d.id] = {x: 16+col*84, y: 16+row*84, w:DEF_W, h:DEF_H, label:d.id};
+    });
+  }
+  nextId = (Object.keys(layout).length ? Math.max(...Object.keys(layout).map(Number)) : 0) + 1;
+  updateSurface();
+}
+
+function updateSurface() {
+  let mx = 700, my = 500;
+  Object.values(layout).forEach(l => { mx = Math.max(mx, l.x+l.w+60); my = Math.max(my, l.y+l.h+60); });
+  const s = document.getElementById('map-surface');
+  s.style.width = mx+'px'; s.style.height = my+'px';
+}
+
+// ══════════════════════════════════════════════════════════
 //  APP INIT
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 function initApp() {
   showScreen('app-screen');
   const pill = document.getElementById('role-pill');
   if (ruolo === 'titolare') {
     pill.textContent = 'Titolare'; pill.className = 'role-pill rp-tit';
     document.getElementById('btabs').style.display = 'flex';
+    document.getElementById('edit-toggle-btn').style.display = '';
   } else {
     pill.textContent = 'Dipendente'; pill.className = 'role-pill rp-dip';
     document.getElementById('btabs').style.display = 'none';
+    document.getElementById('edit-toggle-btn').style.display = 'none';
   }
   renderAll();
   updateStats();
   setSyncOk();
   clearInterval(timer);
   timer = setInterval(() => loadAll(false), REFRESH_MS);
+
+  // Selection box on canvas
+  setupSelectionBox();
 }
 
-// ════════════════════════════════════════════════════════════
-//  LAYOUT (posizioni ombrelloni) — salvato in localStorage
-// ════════════════════════════════════════════════════════════
-function loadLocalLayout() {
-  const saved = localStorage.getItem('spiaggia_layout');
-  if (saved) {
-    layout = JSON.parse(saved);
-    nextId = Math.max(...Object.keys(layout).map(Number), 0) + 1;
-  } else {
-    // Layout di default: griglia 5 colonne
-    layout = {};
-    const ids = Object.keys(remoteData).map(Number).sort((a,b)=>a-b);
-    ids.forEach((id, i) => {
-      const col = i % 5;
-      const row = Math.floor(i / 5);
-      layout[id] = { x: 16 + col * 84, y: 16 + row * 84, w: DEFAULT_W, h: DEFAULT_H };
-    });
-    nextId = (ids.length ? Math.max(...ids) : 0) + 1;
-    saveLayoutLocal();
-  }
-  // Aggiorna dimensione superficie
-  updateSurface();
-}
-
-function saveLayoutLocal() {
-  localStorage.setItem('spiaggia_layout', JSON.stringify(layout));
-  updateSurface();
-}
-
-function updateSurface() {
-  let maxX = 600, maxY = 400;
-  Object.values(layout).forEach(l => {
-    maxX = Math.max(maxX, l.x + l.w + 40);
-    maxY = Math.max(maxY, l.y + l.h + 40);
-  });
-  const surf = document.getElementById('map-surface');
-  surf.style.width  = maxX + 'px';
-  surf.style.height = maxY + 'px';
-}
-
-// ════════════════════════════════════════════════════════════
-//  RENDER MAPPA
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
+//  RENDER
+// ══════════════════════════════════════════════════════════
 function renderAll() {
   const surf = document.getElementById('map-surface');
-  surf.innerHTML = '';
+  // remove old ombs
+  surf.querySelectorAll('.omb').forEach(e => e.remove());
   Object.keys(layout).forEach(id => renderOmb(Number(id)));
   updateSurface();
+  updateSelInfo();
 }
 
 function renderOmb(id) {
-  const l = layout[id];
-  if (!l) return;
-  const d = remoteData[id] || { stato:'free', ts:'', op:'' };
-
+  const l = layout[id]; if (!l) return;
+  const d = remote[id] || {stato:'free', ts:'', op:''};
   let el = document.getElementById(`o${id}`);
   if (!el) {
     el = document.createElement('div');
     el.id = `o${id}`;
     document.getElementById('map-surface').appendChild(el);
-
-    // Resize handle
-    const rh = document.createElement('div');
-    rh.className = 'rhandle';
-    el.appendChild(rh);
-    if (ruolo === 'titolare') attachResize(el, rh, id);
   }
-
-  el.className = `omb s-${d.stato}${editMode ? ' edit-mode' : ''}`;
-  el.style.left   = l.x + 'px';
-  el.style.top    = l.y + 'px';
-  el.style.width  = l.w + 'px';
-  el.style.height = l.h + 'px';
-
-  const label = l.label || id;
+  el.className = `omb s-${d.stato}${editMode ? ' edit-mode' : ''}${selection.has(id) ? ' selected' : ''}`;
+  el.style.cssText = `left:${l.x}px;top:${l.y}px;width:${l.w}px;height:${l.h}px`;
   el.innerHTML = `
-    <div class="on">${label}</div>
+    <div class="on">${l.label||id}</div>
     <div class="ot">${LBL[d.stato]}</div>
     ${d.ts ? `<div class="ots">${d.ts}</div>` : ''}
-    <div class="rhandle"></div>
+    <div class="rh"><svg viewBox="0 0 8 8" fill="currentColor"><path d="M3 7h2V5h2V3H5V1H3v2H1v2h2z" opacity=".5"/><rect x="4" y="4" width="4" height="4" rx="1"/></svg></div>
   `;
-
-  // Re-attach resize handle
-  const rh = el.querySelector('.rhandle');
-  if (ruolo === 'titolare') attachResize(el, rh, id);
-
-  // Click / drag
+  const rh = el.querySelector('.rh');
   if (editMode && ruolo === 'titolare') {
     attachDrag(el, id);
-    el.onclick = null;
+    attachResize(el, rh, id);
+    el.onclick = e => { if (!dragState) toggleSelect(id, e); };
   } else {
-    el.onclick = () => openModal(id);
     el.onpointerdown = null;
+    el.onclick = () => { if (!editMode) openModal(id); };
+    rh.onpointerdown = null;
   }
 }
 
-function refreshOmbEl(id) {
-  const l = layout[id];
-  const d = remoteData[id] || { stato:'free', ts:'', op:'' };
+function refreshOmb(id) {
   const el = document.getElementById(`o${id}`);
+  const l  = layout[id];
+  const d  = remote[id] || {stato:'free', ts:'', op:''};
   if (!el || !l) return;
-  el.className = `omb s-${d.stato}${editMode ? ' edit-mode' : ''}`;
-  const label = l.label || id;
-  const rh = `<div class="rhandle"></div>`;
-  el.innerHTML = `<div class="on">${label}</div><div class="ot">${LBL[d.stato]}</div>${d.ts ? `<div class="ots">${d.ts}</div>` : ''}${rh}`;
-  const newRh = el.querySelector('.rhandle');
-  if (ruolo === 'titolare') attachResize(el, newRh, id);
-  if (editMode && ruolo === 'titolare') { attachDrag(el, id); el.onclick = null; }
-  else { el.onclick = () => openModal(id); el.onpointerdown = null; }
+  el.className = `omb s-${d.stato}${editMode ? ' edit-mode' : ''}${selection.has(id) ? ' selected' : ''}`;
+  el.style.cssText = `left:${l.x}px;top:${l.y}px;width:${l.w}px;height:${l.h}px`;
+  el.innerHTML = `
+    <div class="on">${l.label||id}</div>
+    <div class="ot">${LBL[d.stato]}</div>
+    ${d.ts ? `<div class="ots">${d.ts}</div>` : ''}
+    <div class="rh"><svg viewBox="0 0 8 8" fill="currentColor"><rect x="4" y="4" width="4" height="4" rx="1"/></svg></div>
+  `;
+  const rh = el.querySelector('.rh');
+  if (editMode && ruolo === 'titolare') {
+    attachDrag(el, id);
+    attachResize(el, rh, id);
+    el.onclick = e => { if (!dragState) toggleSelect(id, e); };
+  } else {
+    el.onpointerdown = null;
+    el.onclick = () => openModal(id);
+    rh.onpointerdown = null;
+  }
 }
 
 function updateStats() {
-  const v = Object.values(remoteData);
+  const v = Object.values(remote);
   document.getElementById('cnt-free').textContent = v.filter(x=>x.stato==='free').length;
   document.getElementById('cnt-am').textContent   = v.filter(x=>x.stato==='am').length;
   document.getElementById('cnt-pm').textContent   = v.filter(x=>x.stato==='pm').length;
   document.getElementById('cnt-full').textContent = v.filter(x=>x.stato==='full').length;
 }
 
-// ════════════════════════════════════════════════════════════
-//  DRAG & DROP (titolare, edit mode)
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
+//  SELEZIONE MULTIPLA
+// ══════════════════════════════════════════════════════════
+function toggleSelect(id, e) {
+  e && e.stopPropagation();
+  if (e && e.shiftKey) {
+    selection.has(id) ? selection.delete(id) : selection.add(id);
+  } else {
+    if (selection.has(id) && selection.size === 1) selection.clear();
+    else { selection.clear(); selection.add(id); }
+  }
+  Object.keys(layout).forEach(i => {
+    const el = document.getElementById(`o${i}`);
+    if (el) el.classList.toggle('selected', selection.has(Number(i)));
+  });
+  updateSelInfo();
+}
+
+function clearSelection() {
+  selection.clear();
+  document.querySelectorAll('.omb.selected').forEach(e => e.classList.remove('selected'));
+  updateSelInfo();
+}
+
+function selectAll() {
+  Object.keys(layout).forEach(id => selection.add(Number(id)));
+  Object.keys(layout).forEach(id => {
+    const el = document.getElementById(`o${id}`);
+    if (el) el.classList.add('selected');
+  });
+  updateSelInfo();
+}
+
+function updateSelInfo() {
+  const n = selection.size;
+  document.getElementById('sel-info').textContent = n === 0 ? '0 selezionati' : `${n} selezionat${n===1?'o':'i'}`;
+  document.getElementById('del-sel-btn').style.display = n > 0 ? '' : 'none';
+  if (n === 1) {
+    const l = layout[[...selection][0]];
+    if (l) { document.getElementById('inp-w').value = l.w; document.getElementById('inp-h').value = l.h; }
+  }
+}
+
+// Selection box
+function setupSelectionBox() {
+  const canvas = document.getElementById('map-canvas');
+  const surf   = document.getElementById('map-surface');
+  const box    = document.getElementById('sel-box');
+
+  canvas.addEventListener('pointerdown', e => {
+    if (!editMode) return;
+    if (e.target !== surf && e.target !== canvas) return;
+    clearSelection();
+    const r = surf.getBoundingClientRect();
+    const sx = e.clientX - r.left + canvas.scrollLeft;
+    const sy = e.clientY - r.top  + canvas.scrollTop;
+    boxState = {sx, sy, active:true};
+    box.style.display = 'block';
+    box.style.left = sx+'px'; box.style.top = sy+'px';
+    box.style.width = '0'; box.style.height = '0';
+  });
+
+  canvas.addEventListener('pointermove', e => {
+    if (!boxState?.active) return;
+    const r  = surf.getBoundingClientRect();
+    const cx = e.clientX - r.left + canvas.scrollLeft;
+    const cy = e.clientY - r.top  + canvas.scrollTop;
+    const x  = Math.min(boxState.sx, cx);
+    const y  = Math.min(boxState.sy, cy);
+    const w  = Math.abs(cx - boxState.sx);
+    const h  = Math.abs(cy - boxState.sy);
+    box.style.left = x+'px'; box.style.top = y+'px';
+    box.style.width = w+'px'; box.style.height = h+'px';
+    // select intersecting
+    selection.clear();
+    Object.entries(layout).forEach(([id, l]) => {
+      if (l.x < x+w && l.x+l.w > x && l.y < y+h && l.y+l.h > y) {
+        selection.add(Number(id));
+      }
+    });
+    document.querySelectorAll('.omb').forEach(el => {
+      const id = Number(el.id.slice(1));
+      el.classList.toggle('selected', selection.has(id));
+    });
+    updateSelInfo();
+  });
+
+  canvas.addEventListener('pointerup', () => {
+    if (boxState) { boxState = null; box.style.display = 'none'; }
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+//  DRAG
+// ══════════════════════════════════════════════════════════
 function attachDrag(el, id) {
   el.onpointerdown = e => {
-    if (e.target.classList.contains('rhandle')) return;
-    e.preventDefault();
+    if (e.target.classList.contains('rh') || e.target.closest('.rh')) return;
+    e.preventDefault(); e.stopPropagation();
+    if (!selection.has(id)) { clearSelection(); selection.add(id); refreshOmb(id); updateSelInfo(); }
+
     el.setPointerCapture(e.pointerId);
     el.classList.add('dragging');
-    const startX = e.clientX - layout[id].x;
-    const startY = e.clientY - layout[id].y;
+    const startX = e.clientX, startY = e.clientY;
+    const startPositions = {};
+    selection.forEach(sid => { startPositions[sid] = {x: layout[sid].x, y: layout[sid].y}; });
+    dragState = true;
 
     el.onpointermove = e => {
-      let nx = snap(e.clientX - startX);
-      let ny = snap(e.clientY - startY);
-      nx = Math.max(0, nx); ny = Math.max(0, ny);
-      layout[id].x = nx; layout[id].y = ny;
-      el.style.left = nx + 'px'; el.style.top = ny + 'px';
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      selection.forEach(sid => {
+        const sp = startPositions[sid];
+        layout[sid].x = Math.max(0, snap(sp.x + dx));
+        layout[sid].y = Math.max(0, snap(sp.y + dy));
+        const sel = document.getElementById(`o${sid}`);
+        if (sel) { sel.style.left = layout[sid].x+'px'; sel.style.top = layout[sid].y+'px'; }
+      });
       updateSurface();
     };
+
     el.onpointerup = () => {
       el.classList.remove('dragging');
       el.onpointermove = null; el.onpointerup = null;
+      setTimeout(() => { dragState = null; }, 50);
     };
   };
 }
 
+// ══════════════════════════════════════════════════════════
+//  RESIZE
+// ══════════════════════════════════════════════════════════
 function attachResize(el, rh, id) {
+  if (!rh) return;
   rh.onpointerdown = e => {
     e.preventDefault(); e.stopPropagation();
     rh.setPointerCapture(e.pointerId);
-    const startX = e.clientX;
-    const startY = e.clientY;
-    const startW = layout[id].w;
-    const startH = layout[id].h;
-
+    const sw = layout[id].w, sh2 = layout[id].h;
+    const sx = e.clientX, sy = e.clientY;
     rh.onpointermove = e => {
-      const nw = Math.max(48, snap(startW + e.clientX - startX));
-      const nh = Math.max(48, snap(startH + e.clientY - startY));
-      layout[id].w = nw; layout[id].h = nh;
-      el.style.width = nw + 'px'; el.style.height = nh + 'px';
+      const nw = Math.max(44, snap(sw + e.clientX - sx));
+      const nh = Math.max(44, snap(sh2 + e.clientY - sy));
+      if (selection.has(id) && selection.size > 1) {
+        // resize tutti i selezionati proporzionalmente
+        selection.forEach(sid => {
+          layout[sid].w = nw; layout[sid].h = nh;
+          const se = document.getElementById(`o${sid}`);
+          if (se) { se.style.width = nw+'px'; se.style.height = nh+'px'; }
+        });
+      } else {
+        layout[id].w = nw; layout[id].h = nh;
+        el.style.width = nw+'px'; el.style.height = nh+'px';
+      }
+      document.getElementById('inp-w').value = nw;
+      document.getElementById('inp-h').value = nh;
     };
-    rh.onpointerup = () => { rh.onpointermove = null; rh.onpointerup = null; };
+    rh.onpointerup = () => { rh.onpointermove = null; rh.onpointerup = null; updateSurface(); };
   };
 }
 
-function snap(v) { return Math.round(v / GRID) * GRID; }
+// ══════════════════════════════════════════════════════════
+//  EDITOR TOOLS
+// ══════════════════════════════════════════════════════════
+function getSnap() { return parseInt(document.getElementById('snap-inp').value) || 8; }
+function snap(v)   { return snapOn ? Math.round(v / getSnap()) * getSnap() : v; }
 
-// ════════════════════════════════════════════════════════════
-//  EDIT MODE
-// ════════════════════════════════════════════════════════════
-function toggleEdit(on) {
-  editMode = on;
-  document.getElementById('editor-bar').style.display = on ? 'flex' : 'none';
-  document.getElementById('map-container').style.display = on ? 'flex' : '';
-  document.getElementById('log-panel').style.display = 'none';
-  document.getElementById('tab-map').classList.add('active');
-  document.getElementById('tab-log').classList.remove('active');
-  document.getElementById('map-container').style.display = '';
-  renderAll();
+function toggleSnap() {
+  snapOn = !snapOn;
+  const btn = document.getElementById('snap-btn');
+  btn.textContent = snapOn ? 'Griglia ON' : 'Griglia OFF';
+  btn.classList.toggle('accent', snapOn);
+  document.getElementById('map-surface').classList.toggle('edit-grid', snapOn);
+}
+
+function applySizeToSelected() {
+  const w = parseInt(document.getElementById('inp-w').value) || DEF_W;
+  const h = parseInt(document.getElementById('inp-h').value) || DEF_H;
+  const targets = selection.size > 0 ? [...selection] : Object.keys(layout).map(Number);
+  targets.forEach(id => {
+    if (!layout[id]) return;
+    layout[id].w = Math.max(44, w);
+    layout[id].h = Math.max(44, h);
+    const el = document.getElementById(`o${id}`);
+    if (el) { el.style.width = layout[id].w+'px'; el.style.height = layout[id].h+'px'; }
+  });
+  updateSurface();
+  toast(`Dimensione applicata a ${targets.length} ombrelloni`);
+}
+
+function makeSquare() {
+  const targets = selection.size > 0 ? [...selection] : Object.keys(layout).map(Number);
+  targets.forEach(id => {
+    if (!layout[id]) return;
+    const s = Math.max(layout[id].w, layout[id].h);
+    layout[id].w = s; layout[id].h = s;
+    const el = document.getElementById(`o${id}`);
+    if (el) { el.style.width = s+'px'; el.style.height = s+'px'; }
+  });
+  updateSurface();
+  toast('Resi quadrati');
+}
+
+function alignSel(dir) {
+  const targets = selection.size > 1 ? [...selection] : Object.keys(layout).map(Number);
+  if (targets.length < 2) { toast('Seleziona almeno 2 ombrelloni'); return; }
+  const vals = targets.map(id => layout[id]);
+  let ref;
+  switch(dir) {
+    case 'left':    ref = Math.min(...vals.map(l=>l.x));           targets.forEach(id=>{layout[id].x=ref;}); break;
+    case 'right':   ref = Math.max(...vals.map(l=>l.x+l.w));       targets.forEach(id=>{layout[id].x=ref-layout[id].w;}); break;
+    case 'top':     ref = Math.min(...vals.map(l=>l.y));           targets.forEach(id=>{layout[id].y=ref;}); break;
+    case 'bottom':  ref = Math.max(...vals.map(l=>l.y+l.h));       targets.forEach(id=>{layout[id].y=ref-layout[id].h;}); break;
+    case 'hcenter': ref = (Math.min(...vals.map(l=>l.x))+Math.max(...vals.map(l=>l.x+l.w)))/2; targets.forEach(id=>{layout[id].x=ref-layout[id].w/2;}); break;
+    case 'vcenter': ref = (Math.min(...vals.map(l=>l.y))+Math.max(...vals.map(l=>l.y+l.h)))/2; targets.forEach(id=>{layout[id].y=ref-layout[id].h/2;}); break;
+  }
+  targets.forEach(id => { const el=document.getElementById(`o${id}`); if(el){el.style.left=layout[id].x+'px';el.style.top=layout[id].y+'px';} });
+  updateSurface();
+  toast('Allineati');
+}
+
+function distribute(axis) {
+  const targets = selection.size > 1 ? [...selection] : Object.keys(layout).map(Number);
+  if (targets.length < 3) { toast('Seleziona almeno 3 ombrelloni'); return; }
+  if (axis === 'h') {
+    targets.sort((a,b) => layout[a].x - layout[b].x);
+    const minX = layout[targets[0]].x;
+    const maxX = layout[targets[targets.length-1]].x + layout[targets[targets.length-1]].w;
+    const totalW = targets.reduce((s,id)=>s+layout[id].w,0);
+    const gap = (maxX - minX - totalW) / (targets.length-1);
+    let cx = minX;
+    targets.forEach(id => { layout[id].x = Math.round(cx); cx += layout[id].w + gap; const el=document.getElementById(`o${id}`); if(el) el.style.left=layout[id].x+'px'; });
+  } else {
+    targets.sort((a,b) => layout[a].y - layout[b].y);
+    const minY = layout[targets[0]].y;
+    const maxY = layout[targets[targets.length-1]].y + layout[targets[targets.length-1]].h;
+    const totalH = targets.reduce((s,id)=>s+layout[id].h,0);
+    const gap = (maxY - minY - totalH) / (targets.length-1);
+    let cy = minY;
+    targets.forEach(id => { layout[id].y = Math.round(cy); cy += layout[id].h + gap; const el=document.getElementById(`o${id}`); if(el) el.style.top=layout[id].y+'px'; });
+  }
+  updateSurface();
+  toast('Distribuiti uniformemente');
 }
 
 function addOmb() {
   const id = nextId++;
-  layout[id] = { x:16, y:16, w:DEFAULT_W, h:DEFAULT_H };
-  remoteData[id] = { stato:'free', ts:'', op:'' };
+  const canvas = document.getElementById('map-canvas');
+  layout[id] = { x: snap(canvas.scrollLeft + 20), y: snap(canvas.scrollTop + 20), w:DEF_W, h:DEF_H, label:id };
+  remote[id]  = { stato:'free', ts:'', op:'' };
   renderOmb(id);
+  updateSurface();
   updateStats();
-  toast(`Ombrellone ${id} aggiunto — trascina per posizionarlo`);
-  // Registra su backend
+  clearSelection(); selection.add(id);
+  document.getElementById(`o${id}`)?.classList.add('selected');
+  updateSelInfo();
   apiPost({ action:'setState', ombrellone:id, stato:'free', pass }).catch(()=>{});
+  toast(`Ombrellone ${id} aggiunto`);
+}
+
+function deleteSelected() {
+  if (selection.size === 0) return;
+  if (!confirm(`Eliminare ${selection.size} ombrellone/i?`)) return;
+  selection.forEach(id => {
+    delete layout[id]; delete remote[id];
+    document.getElementById(`o${id}`)?.remove();
+  });
+  selection.clear(); updateSurface(); updateStats(); updateSelInfo();
+  toast('Eliminati');
+}
+
+function deleteOne() {
+  if (!selId) return;
+  if (!confirm(`Eliminare ombrellone ${layout[selId]?.label || selId}?`)) return;
+  const id = selId;
+  closeMbd();
+  delete layout[id]; delete remote[id];
+  document.getElementById(`o${id}`)?.remove();
+  selection.delete(id); updateSurface(); updateStats(); updateSelInfo();
+  toast('Eliminato');
+}
+
+// ══════════════════════════════════════════════════════════
+//  EDIT MODE
+// ══════════════════════════════════════════════════════════
+function toggleEdit() {
+  editMode = !editMode;
+  const bar = document.getElementById('editor-bar');
+  const btn = document.getElementById('edit-toggle-btn');
+  bar.style.display = editMode ? '' : 'none';
+  btn.textContent   = editMode ? '✓ Fine modifica' : '✏️ Modifica';
+  btn.classList.toggle('active-btn', editMode);
+  document.getElementById('map-surface').classList.toggle('edit-grid', editMode && snapOn);
+  if (!editMode) { clearSelection(); }
+  renderAll();
 }
 
 async function saveLayout() {
-  saveLayoutLocal();
-  toast('✅ Posizioni salvate');
+  const layoutToSave = {};
+  Object.entries(layout).forEach(([id, l]) => { layoutToSave[id] = {...l}; });
+  try {
+    const res = await apiPost({ action:'saveLayout', layout:layoutToSave, pass });
+    if (!res.ok) throw new Error(res.error);
+    toast('✅ Layout salvato su tutti i dispositivi');
+  } catch(e) { toast('⚠️ Errore salvataggio: ' + e.message); }
 }
 
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 //  MODAL STATO
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 function openModal(id) {
   selId = id;
   const l = layout[id] || {};
   document.getElementById('mtitle').textContent = `Ombrellone ${l.label || id}`;
-  document.getElementById('del-btn').style.display = (ruolo === 'titolare') ? '' : 'none';
+  document.getElementById('del-btn').style.display = ruolo === 'titolare' ? '' : 'none';
   document.getElementById('mbd').classList.add('open');
 }
-
 function closeMbd(e) {
   if (e && e.target !== document.getElementById('mbd')) return;
   document.getElementById('mbd').classList.remove('open'); selId = null;
 }
-
 async function pick(stato) {
   if (!selId) return;
   const id = selId;
-  document.getElementById('mbd').classList.remove('open'); selId = null;
-
+  closeMbd();
   const now = new Date();
-  const ts  = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-  remoteData[id] = { stato, ts, op:'dip' };
-  refreshOmbEl(id);
-  updateStats();
-  toast(`#${layout[id]?.label || id} → ${LBL[stato]}`);
-
+  const ts  = now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  remote[id] = {stato, ts, op:'dip'};
+  refreshOmb(id); updateStats();
+  toast(`#${layout[id]?.label||id} → ${LBL[stato]}`);
   try {
-    const res = await apiPost({ action:'setState', ombrellone:id, stato, pass });
+    const res = await apiPost({action:'setState', ombrellone:id, stato, pass});
     if (!res.ok) throw new Error(res.error);
     setSyncOk();
-  } catch(e) {
-    toast('⚠️ Errore salvataggio');
-    setSyncErr();
-    loadAll(false);
-  }
+  } catch(e) { setSyncErr(); loadAll(false); }
 }
 
-function deleteOmb() {
-  if (!selId) return;
-  if (!confirm(`Eliminare ombrellone ${selId}?`)) return;
-  const id = selId;
-  document.getElementById('mbd').classList.remove('open'); selId = null;
-  delete layout[id];
-  delete remoteData[id];
-  saveLayoutLocal();
-  const el = document.getElementById(`o${id}`);
-  if (el) el.remove();
-  updateStats();
-  toast(`Ombrellone ${id} eliminato`);
-}
-
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 //  TABS
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 function showTab(tab) {
-  editMode = false;
-  document.getElementById('editor-bar').style.display = 'none';
-  document.getElementById('map-container').style.display = tab === 'map' ? '' : 'none';
-  document.getElementById('log-panel').style.display     = tab === 'log' ? 'block' : 'none';
-  document.getElementById('tab-map').classList.toggle('active', tab === 'map');
-  document.getElementById('tab-log').classList.toggle('active', tab === 'log');
-  document.getElementById('tab-edit').classList.remove('active');
-  if (tab === 'log') loadLog();
-  if (tab === 'map') renderAll();
+  if (editMode) toggleEdit();
+  document.getElementById('map-outer').style.display  = tab==='map' ? '' : 'none';
+  document.getElementById('log-panel').style.display  = tab==='log' ? 'block' : 'none';
+  document.getElementById('tab-map').classList.toggle('active', tab==='map');
+  document.getElementById('tab-log').classList.toggle('active', tab==='log');
+  if (tab==='log') loadLog();
 }
 
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 //  DATI REMOTI
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 function processRemote(arr) {
-  remoteData = {};
-  arr.forEach(d => { remoteData[d.id] = { stato:d.stato||'free', ts:d.ts||'', op:d.op||'' }; });
+  remote = {};
+  arr.forEach(d => { remote[d.id] = {stato:d.stato||'free', ts:d.ts||'', op:d.op||''}; });
 }
-
 async function loadAll(manual) {
   if (manual) setSyncLoading();
   try {
     const res = await apiGet(cfg.url, 'getAll', pass);
     if (!res.ok) throw new Error(res.error);
-    const prev = JSON.stringify(remoteData);
+    const prev = JSON.stringify(remote);
     processRemote(res.data);
-    if (JSON.stringify(remoteData) !== prev) {
-      // Aggiorna solo gli elementi cambiati
-      Object.keys(remoteData).forEach(id => refreshOmbEl(Number(id)));
-      updateStats();
-    }
+    if (JSON.stringify(remote) !== prev) { Object.keys(remote).forEach(id => refreshOmb(Number(id))); updateStats(); }
     setSyncOk();
-  } catch(e) {
-    setSyncErr();
-    if (manual) toast('Errore connessione');
-  }
+  } catch(e) { setSyncErr(); if(manual) toast('Errore connessione'); }
 }
 
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 //  LOG
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 async function loadLog() {
   const list = document.getElementById('log-list');
   list.innerHTML = '<div class="loading"><div class="spin-el"></div></div>';
   try {
     const res = await apiGet(cfg.url, 'getLog', pass);
-    if (!res.ok || !res.data.length) {
-      list.innerHTML = '<div class="loading" style="font-size:.82rem">Nessun movimento oggi</div>';
-      return;
-    }
+    if (!res.ok || !res.data.length) { list.innerHTML = '<div class="loading" style="font-size:.82rem">Nessun movimento</div>'; return; }
     list.innerHTML = res.data.map(r =>
-      `<div class="log-row">
-        <span class="lts">${r.ts}</span>
-        <span class="lid">#${r.id}</span>
-        <span style="color:var(--muted);font-size:.7rem">→</span>
-        <span class="lst ls-${r.a}">${LBL[r.a]||r.a}</span>
-      </div>`
+      `<div class="log-row"><span class="lts">${r.ts}</span><span class="lid">#${r.id}</span><span style="color:var(--muted);font-size:.7rem">→</span><span class="lst ls-${r.a}">${LBL[r.a]||r.a}</span></div>`
     ).join('');
-  } catch(e) {
-    list.innerHTML = '<div class="loading">Errore caricamento</div>';
-  }
+  } catch(e) { list.innerHTML = '<div class="loading">Errore</div>'; }
 }
-
 async function doReset() {
-  if (!confirm('Reset tutti gli ombrelloni a "Libero"?\n(Fallo a inizio giornata)')) return;
-  try {
-    await apiPost({ action:'resetAll', pass });
-    toast('✅ Reset completato');
-    loadAll(true);
-  } catch(e) { toast('Errore reset'); }
+  if (!confirm('Reset tutti gli ombrelloni a "Libero"?')) return;
+  try { await apiPost({action:'resetAll', pass}); toast('✅ Reset fatto'); loadAll(true); }
+  catch(e) { toast('Errore reset'); }
 }
 
-// ════════════════════════════════════════════════════════════
-//  SYNC INDICATOR
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
+//  SYNC
+// ══════════════════════════════════════════════════════════
 function setSyncOk()      { document.getElementById('sdot-wrap').innerHTML = '<span class="sdot"></span>'; }
 function setSyncErr()     { document.getElementById('sdot-wrap').innerHTML = '<span class="sdot err"></span>'; }
-function setSyncLoading() { document.getElementById('sdot-wrap').innerHTML = '<span class="sdot spin-anim"></span>'; }
+function setSyncLoading() { document.getElementById('sdot-wrap').innerHTML = '<span class="sdot pulse"></span>'; }
 
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 //  API
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
 async function apiGet(url, action, p) {
-  const r = await fetch(`${url}?action=${action}&pass=${encodeURIComponent(p)}`, { redirect:'follow' });
+  const r = await fetch(`${url}?action=${action}&pass=${encodeURIComponent(p)}`, {redirect:'follow'});
   return r.json();
 }
 async function apiPost(body) {
-  const r = await fetch(cfg.url, { method:'POST', redirect:'follow', body:JSON.stringify(body) });
+  const r = await fetch(cfg.url, {method:'POST', redirect:'follow', body:JSON.stringify(body)});
   return r.json();
 }
 
-// ════════════════════════════════════════════════════════════
-//  TOAST
-// ════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════
+//  TOAST & KEYBOARD
+// ══════════════════════════════════════════════════════════
 let tTimer;
 function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
-  clearTimeout(tTimer);
-  tTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  clearTimeout(tTimer); tTimer = setTimeout(()=>t.classList.remove('show'), 2200);
 }
 
-// ════════════════════════════════════════════════════════════
-//  SERVICE WORKER (PWA offline)
-// ════════════════════════════════════════════════════════════
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
-}
+document.addEventListener('keydown', e => {
+  if (!editMode) return;
+  if (e.key === 'Escape') clearSelection();
+  if ((e.ctrlKey||e.metaKey) && e.key==='a') { e.preventDefault(); selectAll(); }
+  if (e.key==='Delete'||e.key==='Backspace') { if(selection.size>0 && document.activeElement.tagName!=='INPUT') deleteSelected(); }
+  // arrow keys per micro-spostamento
+  if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key) && selection.size>0) {
+    e.preventDefault();
+    const d = e.shiftKey ? 10 : 1;
+    const dx = e.key==='ArrowLeft'?-d:e.key==='ArrowRight'?d:0;
+    const dy = e.key==='ArrowUp'?-d:e.key==='ArrowDown'?d:0;
+    selection.forEach(id => {
+      layout[id].x = Math.max(0, layout[id].x+dx);
+      layout[id].y = Math.max(0, layout[id].y+dy);
+      const el=document.getElementById(`o${id}`);
+      if(el){el.style.left=layout[id].x+'px';el.style.top=layout[id].y+'px';}
+    });
+    updateSurface();
+  }
+});
+
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
 </html>
