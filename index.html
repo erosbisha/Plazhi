@@ -262,7 +262,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
       <div class="eb-row">
         <span class="sel-info" id="sel-info">0 selezionati</span>
         <div class="eb-sep"></div>
-        <button class="btn-ed" style="background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:var(--accent)" onclick="openGridModal()">⊞ Aggiungi file ombrelloni</button>
+        <button class="btn-ed" style="background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:var(--accent)" onclick="addSingleOmb()">+ Singolo</button>
+        <button class="btn-ed" style="background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:var(--accent)" onclick="openGridModal()">⊞ File ombrelloni</button>
         <div class="eb-sep"></div>
         <button class="btn-ed danger" onclick="deleteSelected()" id="del-sel-btn" style="display:none">🗑 Elimina selezionati</button>
       </div>
@@ -619,6 +620,23 @@ function toggleEdit() {
   else { bar.style.display='none'; btn.style.display=''; btn.textContent='✏️ Modifica'; clearSelection(); }
   document.getElementById('map-surface').classList.toggle('edit-grid', editMode);
   renderAll();
+}
+
+// ── AGGIUNGI SINGOLO ──
+function addSingleOmb() {
+  const id = nextId++;
+  const canvas = document.getElementById('map-canvas');
+  const x = Math.max(0, Math.round((canvas.scrollLeft + 20) / 8) * 8);
+  const y = Math.max(0, Math.round((canvas.scrollTop  + 20) / 8) * 8);
+  layout[id] = {x, y, w:DEF_W, h:DEF_H, label:id};
+  remote[id]  = {stato:'free', ts:'', op:''};
+  renderOmb(id);
+  updateSurface(); updateStats();
+  clearSelection(); selection.add(id);
+  document.getElementById(`o${id}`)?.classList.add('selected');
+  updateSelInfo();
+  apiPost({action:'setState', ombrellone:id, stato:'free', pass}).catch(()=>{});
+  toast(`Ombrellone ${id} aggiunto — trascina per posizionarlo`);
 }
 
 // ── MODAL GRIGLIA — stile "inserisci tabella Word" ──
